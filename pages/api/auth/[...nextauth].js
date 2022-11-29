@@ -7,6 +7,8 @@ import Auth0Provider from "next-auth/providers/auth0"
 // import AppleProvider from "next-auth/providers/apple"
 // import EmailProvider from "next-auth/providers/email"
 import IdentityServer4Provider from "next-auth/providers/identity-server4";
+import KeycloakProvider from "next-auth/providers/keycloak";
+
 
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
@@ -76,6 +78,12 @@ export default NextAuth({
       issuer: "https://testingidentity.edunext.vn",
       clientId: "cmsnext",
       clientSecret: "cmsnext",
+    }),
+    KeycloakProvider({
+      id: "keycloak",
+      clientId: process.env.KEYCLOAK_ID,
+      clientSecret: process.env.KEYCLOAK_SECRET,
+      issuer: process.env.KEYCLOAK_ISSUER,
     })
   ],
   // The secret should be set to a reasonably long random string.
